@@ -239,4 +239,5 @@ Rules updated (v6)
 
 - Thêm các thông số query dứ liệu từ influxdb và chọn dạng đồ thị
 <img src="https://github.com/lean15998/TIG-Stack/blob/main/image/07.png">
+- K
 <img src="https://github.com/lean15998/TIG-Stack/blob/main/image/08.png">
