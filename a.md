@@ -206,13 +206,14 @@ Rules updated
 Rules updated (v6)
 ```
 
-### Sử dụng dashboard grafana
+# Sử dụng dashboard grafana
 
-- Truy cập vào dashboard `http://10.0.0.51:3000`
+
+### Truy cập vào dashboard `http://10.0.0.51:3000`
 
 <img src="https://github.com/lean15998/TIG-Stack/blob/main/image/01.png">
 
-- Thêm fluxdb làm nguồn dữ liệu cho grafana
+### Thêm fluxdb làm nguồn dữ liệu cho grafana
 
 <img src="https://github.com/lean15998/TIG-Stack/blob/main/image/02.png">
 
@@ -233,11 +234,44 @@ Rules updated (v6)
 <img src="https://github.com/lean15998/TIG-Stack/blob/main/image/05.png">
   
   
-- Thêm dashboad giám sát (Chọn add new panel)
+### Thêm dashboad giám sát (Chọn add new panel)
 
 <img src="https://github.com/lean15998/TIG-Stack/blob/main/image/06.png">
 
 - Thêm các thông số query dứ liệu từ influxdb và chọn dạng đồ thị
 <img src="https://github.com/lean15998/TIG-Stack/blob/main/image/07.png">
-- K
+- Kết quả
 <img src="https://github.com/lean15998/TIG-Stack/blob/main/image/08.png">
+
+
+### Alert notification
+
+- Cấu hình smtp cho grafana
+
+```sh
+root@quynv:~# vim /etc/grafana/grafana.ini
+
+[smtp]
+
+enabled = true
+host = smtp.gmail.com:587
+user = quy15091998@gmail.com
+password = **********
+from_address = quy15091998@gmail.com
+from_name = Grafana
+
+root@quynv:~# systemctl restart grafana-server
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
