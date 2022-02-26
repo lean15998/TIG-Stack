@@ -60,10 +60,178 @@ root@quynv:~# apt install influxdb -y
 - Khởi động dịch vụ và cấu hình khởi động cùng hệ thống:
 
 
+```sh
+root@quynv:~# systemctl start influxdb
+root@quynv:~# systemctl enable influxdb
+```
+
+- Mở port cho influxdb
+
+```sh
+root@quynv:~# ufw allow 8086
+Rules updated
+Rules updated (v6)
+root@quynv:~# ufw allow 8088
+Rules updated
+Rules updated (v6)
+```
+
+- Cấu hình influxdb
+
+```sh
+root@quynv:~# vi /etc/influxdb/influxdb.conf
+
+[http]
+# Determines whether HTTP endpoint is enabled.
+enabled = true
+
+# Determines whether the Flux query endpoint is enabled.
+flux-enabled = true
+
+# The bind address used by the HTTP service.
+bind-address = ":8086"
+
+# Determines whether HTTP request logging is enabled.
+log-enabled = true
+```
+
+- Tạo user chứng thực
+
+```sh
+root@quynv:~# influx
+Connected to http://localhost:8086 version 1.8.10
+InfluxDB shell version: 1.8.10
+> create database telegraf
+> create user telegraf with password 'lean15998' with all privileges
+> exit
+```
+
+### Cài đặt telegaf agent
 
 
+- Add repo influxdata
+
+```sh
+root@agent:~# wget -qO- https://repos.influxdata.com/influxdb.key | apt-key add -
+OK
+root@agent:~# source /etc/lsb-release
+root@agent:~# echo "deb https://repos.influxdata.com/${DISTRIB_ID,,} ${DISTRIB_CODENAME} stable" | tee /etc/apt/sources.list.d/influxdb.list
+deb https://repos.influxdata.com/ubuntu focal stable
+root@agent:~# apt update 
+```
+
+- Cài đặt influxdb
+
+```sh
+root@agent:~# apt install influxdb-client -y
+```
+
+- Cài đặt telegraf
+
+```sh
+root@agent:~# wget https://dl.influxdata.com/telegraf/releases/telegraf_1.21.4-1_amd64.deb
+root@agent:~# dpkg -i telegraf_1.21.4-1_amd64.deb
+```
+- Khởi động dịch vụ và cấu hình khởi động cùng hệ thống
+
+```sh
+root@agent:~# systemctl start telegraf
+root@agent:~# systemctl enable telegraf
+```
 
 
+- Cấu hình telegraf
 
+```sh
+root@agent:~# vim /etc/telegraf/telegraf.conf
 
+hostname = "agent"
+[[outputs.influxdb]] 
+urls = ["http://10.0.0.51:8086"]
+database = "telegraf"
+username = "telegraf"
+password = "lean15998"
 
+```
+<ul>
+  <ul>
+<li> urls: ta chọn phương thức đẩy dữ liệu, có thể qua socket (chỉ dùng khi telegraf và influxdb trên cùng 1 host), qua giao thức upd, hoặc sử dụng http (khuyến khích dùng vì influxdb hỗ trợ tốt hơn với api http)
+<li> database: Ta sẽ định nghĩa tên database dùng để lưu trữ dữ liệu trên influxdb, khi telegraf gửi dữ liệu tới nếu chưa có database nó sẽ tự tạo ra database với tên này.
+<li> username và password: Nhập user và pass đã tạo ở influxdb để telegraf dùng nó và chứng thực.
+  </ul>
+  </ul>
+  
+- Kiểm tra kết nối đến db
+
+```sh
+root@agent:~# influx -host 10.0.0.51 -username 'telegraf' -password "lean15998"
+Connected to http://10.0.0.51:8086 version 1.8.10
+InfluxDB shell version: 1.6.4
+> show databases
+name: databases
+name
+----
+_internal
+telegraf
+> show users
+user     admin
+----     -----
+telegraf true
+> exit
+```
+  
+### Cài đặt Grafana
+
+- Add repo và cài đặt grafana
+
+```sh
+root@quynv:~# wget -q -O - https://packages.grafana.com/gpg.key | apt-key add -
+OK
+root@quynv:~# add-apt-repository "deb https://packages.grafana.com/oss/deb stable main"
+root@quynv:~# apt-get install -y grafana
+```
+  
+- Khởi động dịch vụ và cấu hình khởi động cùng hệ thống  
+  
+```sh
+root@quynv:~# systemctl start grafana-server
+root@quynv:~# systemctl enable grafana-server
+```
+  
+- Mở port cho grafana
+
+```sh
+root@quynv:~# ufw allow 3000
+Rules updated
+Rules updated (v6)
+```
+
+### Sử dụng dashboard grafana
+
+- Truy cập vào dashboard `http://10.0.0.51:3000`
+
+<img src="https://github.com/lean15998/TIG-Stack/blob/main/image/01.png">
+
+- Thêm fluxdb làm nguồn dữ liệu cho grafana
+
+<img src="https://github.com/lean15998/TIG-Stack/blob/main/image/02.png">
+
+<img src="https://github.com/lean15998/TIG-Stack/blob/main/image/03.png">
+
+- Nhập các thông tin cảu fluxdb bao gồm
+
+<ul>
+  <ul>
+    <li> Tên InfluxDB
+    <li> Đường dẫn truy cập InfluxDB(vì cài cùng trên 1 server với grafana nên là localhost)
+    <li> Tài khoản xác thực. Nhập tài khoản admin của InfluxDB và mật khẩu
+    <li> Database detail ta nhập user và password của telegraf
+      </ul>
+  </ul>
+
+<img src="https://github.com/lean15998/TIG-Stack/blob/main/image/04.png">
+<img src="https://github.com/lean15998/TIG-Stack/blob/main/image/05.png">
+  
+  
+  
+  
