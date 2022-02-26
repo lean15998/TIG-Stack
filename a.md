@@ -233,5 +233,10 @@ Rules updated (v6)
 <img src="https://github.com/lean15998/TIG-Stack/blob/main/image/05.png">
   
   
-  
-  
+- Thêm dashboad giám sát (Chọn add new panel)
+
+<img src="https://github.com/lean15998/TIG-Stack/blob/main/image/06.png">
+
+- Thêm các thông số query dứ liệu từ influxdb và chọn dạng đồ thị
+<img src="https://github.com/lean15998/TIG-Stack/blob/main/image/07.png">
+<img src="https://github.com/lean15998/TIG-Stack/blob/main/image/08.png">
