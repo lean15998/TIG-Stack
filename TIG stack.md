@@ -264,14 +264,26 @@ root@quynv:~# systemctl restart grafana-server
 
 ```
 
+- Thêm contact point
+
+<img src="https://github.com/lean15998/TIG-Stack/blob/main/image/14.png">
+
+- Thêm notification policy
+
+<img src="https://github.com/lean15998/TIG-Stack/blob/main/image/15.png">
 
 
+- Tạo rule cảnh báo
+<img src="https://github.com/lean15998/TIG-Stack/blob/main/image/09.png">
+- Nhập các thông tin cảnh báo ram sử dụng vượt quá 125400 Mb
+<img src="https://github.com/lean15998/TIG-Stack/blob/main/image/10.png">
+<img src="https://github.com/lean15998/TIG-Stack/blob/main/image/11.png">
+<img src="https://github.com/lean15998/TIG-Stack/blob/main/image/12.png">
 
+- Kết quả
+<img src="https://github.com/lean15998/TIG-Stack/blob/main/image/13.png">
 
-
-
-
-
-
-
-
+- Lịch sử tr
+<img src="https://github.com/lean15998/TIG-Stack/blob/main/image/17.png">
+- Kiểm tra mail cảnh báo
+<img src="https://github.com/lean15998/TIG-Stack/blob/main/image/16.png">
