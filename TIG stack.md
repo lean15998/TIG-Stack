@@ -246,11 +246,11 @@ Rules updated (v6)
 
 ### Import dashboard
 - Import Dashboard số 1902
- <img src="https://github.com/lean15998/TIG-Stack/blob/main/image/97.png">
+ <img src="https://github.com/lean15998/TIG-Stack/blob/main/image/97.PNG">
 - Chọn thư mục và Nguồn dữ liêu
- <img src="https://github.com/lean15998/TIG-Stack/blob/main/image/96.png">
+ <img src="https://github.com/lean15998/TIG-Stack/blob/main/image/96.PNG">
 - Kết quả
- <img src="https://github.com/lean15998/TIG-Stack/blob/main/image/98.png">
+ <img src="https://github.com/lean15998/TIG-Stack/blob/main/image/98.PNG">
 ### Alert notification
 
 - Cấu hình smtp cho grafana
@@ -290,7 +290,7 @@ root@quynv:~# systemctl restart grafana-server
 - Kết quả
 <img src="https://github.com/lean15998/TIG-Stack/blob/main/image/13.png">
 
-- Lịch sử tr
+- Lịch sử trạng thái
 <img src="https://github.com/lean15998/TIG-Stack/blob/main/image/17.png">
 - Kiểm tra mail cảnh báo
 <img src="https://github.com/lean15998/TIG-Stack/blob/main/image/16.png">
