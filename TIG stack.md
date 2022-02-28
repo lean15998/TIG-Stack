@@ -244,7 +244,13 @@ Rules updated (v6)
 - Kết quả
 <img src="https://github.com/lean15998/TIG-Stack/blob/main/image/08.png">
 
-
+### Import dashboard
+- Import Dashboard số 1902
+ <img src="https://github.com/lean15998/TIG-Stack/blob/main/image/97.png">
+- Chọn thư mục và Nguồn dữ liêu
+ <img src="https://github.com/lean15998/TIG-Stack/blob/main/image/96.png">
+- Kết quả
+ <img src="https://github.com/lean15998/TIG-Stack/blob/main/image/98.png">
 ### Alert notification
 
 - Cấu hình smtp cho grafana
