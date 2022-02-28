@@ -10,6 +10,7 @@
 
 - Grafana là một công cụ mã nguồn mở cho phép chúng ta truy vấn, hiển thị, cảnh báo các số liệu thu thập được. Nó có các tính năng nổi bật như hiển thị số liệu theo nhiều dạng biểu đồ khác nhau; cảnh báo qua nhiều kênh như email, telegram, slack, …; Hỗ trợ nhiều loại database như InfluxDB, ElasticSearch, Graphite, …; Cung cấp nhiều plugin, nhiều dashboard template.
 
+  <img src="https://github.com/lean15998/TIG-Stack/blob/main/image/99.png">
 - Nói ngắn gọn, TIG stack hoạt động như sau:
 
 <ul>
