@@ -21,6 +21,8 @@
 </ul>
 </ul>
 
+<img src="https://github.com/lean15998/TIG-Stack/blob/main/image/95.png">
+
 # 2. Cài đặt
 
 ## Mô hình triển khai
