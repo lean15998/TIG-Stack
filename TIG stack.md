@@ -147,12 +147,25 @@ root@agent:~# systemctl enable telegraf
 root@agent:~# vim /etc/telegraf/telegraf.conf
 
 hostname = "agent"
-[[outputs.influxdb]] 
+[[outputs.influxdb]]     //output data
 urls = ["http://10.0.0.51:8086"]
 database = "telegraf"
 username = "telegraf"
 password = "lean15998"
 
+[[inputs.cpu]]  //input data
+  ## Whether to report per-cpu stats or not
+  percpu = true
+  ## Whether to report total system cpu stats or not
+  totalcpu = true
+  ## If true, collect raw CPU time metrics
+  collect_cpu_time = false
+  ## If true, compute and report the sum of all non-idle CPU states
+  report_active = false
+
+[[inputs.exec]]
+  commands = ["/usr/lib/nagios/plugins/check_load -w 5,6,7 -c 7,8,9"]
+  data_format = "nagios"
 ```
 <ul>
   <ul>
